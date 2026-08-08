@@ -1,0 +1,20 @@
+.card {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid gray;
+}
+
+.grid button {
+  margin: 5px;
+  padding: 10px;
+}
+
+.active {
+  background: green;
+  color: white;
+}
+
+.ticket {
+  padding: 20px;
+  border: 2px dashed black;
+}

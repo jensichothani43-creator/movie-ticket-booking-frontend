@@ -1,0 +1,116 @@
+/* ================= ADD SHOW PAGE ================= */
+.add-show-page::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(108,92,231,0.4), transparent);
+  top: -100px;
+  left: -100px;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* ================= LEFT FORM ================= */
+
+.form-box,
+.preview-box {
+  flex: 1;
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  transition: 0.3s ease;
+}
+
+.form-box:hover,
+.preview-box:hover {
+  transform: translateY(-4px);
+}
+
+.form-box h2,
+.preview-box h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+/* ================= INPUTS ================= */
+
+.form-box input,
+.form-box textarea,
+.form-box select {
+  width: 100%;
+  margin: 12px 0;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.25);
+  color: rgba(95, 0, 0, 0.356);
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.form-box input:focus,
+.form-box textarea:focus,
+.form-box select:focus {
+  border-color: #8e7dff;
+  box-shadow: 0 0 15px rgba(142, 125, 255, 0.5);
+}
+
+/* ================= BUTTON ================= */
+
+.form-box button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.form-box button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(108, 92, 231, 0.5);
+}
+
+/* ================= PREVIEW GRID ================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.grid img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .add-show-page {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+
