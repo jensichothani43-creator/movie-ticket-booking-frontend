@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import "../../css/user/ActionMovies.css";
+import "./ActionMovies.css";
 
 export default function ActionMovies() {
   const [movies, setMovies] = useState([]);
@@ -10,17 +10,19 @@ export default function ActionMovies() {
   useEffect(() => {
     fetchMovies();
   }, []);
-
-  const fetchMovies = async () => {
+const fetchMovies = async () => {
     try {
       setLoading(true);
       setError("");
 
-      const res = await api.get("/moviesaction");
+      const res = await api.get("/movies");  
 
-      // ✅ safe check
+     
       if (Array.isArray(res.data)) {
-        setMovies(res.data);
+        const actionMovies = res.data.filter(
+          (m) => m.category?.toLowerCase() === "action"
+        );
+        setMovies(actionMovies);
       } else {
         setMovies([]);
       }

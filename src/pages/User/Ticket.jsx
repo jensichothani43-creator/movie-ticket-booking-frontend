@@ -14,7 +14,7 @@ export default function Ticket() {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const res = await api.get(`/book/${id}`);
+        const res = await api.get(`/bookings/${id}`);
 
         // SAFE CHECK (important fix)
         setBooking(res.data || null);

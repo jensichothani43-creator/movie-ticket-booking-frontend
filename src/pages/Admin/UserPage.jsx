@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import "../../css/admin/UserPage.css";
+import "./UserPage.css";
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);

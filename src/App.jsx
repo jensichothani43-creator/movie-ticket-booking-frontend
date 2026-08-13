@@ -13,10 +13,6 @@ import SelectShow from "./pages/User/SelectShow";
 import SeatSelection from "./pages/User/SeatSelection";
 import Ticket from "./pages/User/Ticket";
 import FinalTicket from "./pages/User/FinalTicket";
-
-
-import Admin from './pages/Admin/Dashboard.jsx';
-import Dashboard from './pages/Admin/Dashboard.jsx';
 import Shows from "./pages/Admin/Shows";
 import MyBookings from "./pages/User/MyBookings";
 import MovieDetail from "./pages/User/MovieDetail";
@@ -32,6 +28,7 @@ import Profile from "./pages/User/Profile";
 import PaymentCancel from "./pages/User/PaymentCancel";
 import Layout from "./components/Layout";
 import PrivateRoute from "./PrivateRoute";
+import Admin from "./pages/Admin/Admin";
 
 export default function App() {
   return (
@@ -42,7 +39,7 @@ export default function App() {
     
         <Route path="/login" element={<Login />} />
         {/* HOME */}
-      <Route path="/home" element={<Home />} />
+     
         <Route path="/index" element={<Navigate to="/home" replace />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/user-offers/:movie_id" element={<UserOffers />} />
@@ -83,16 +80,68 @@ export default function App() {
         <Route path="/action" element={<ActionMovies />} />
         <Route path="/shows" element={<Shows />} />
         <Route path="/my-bookings" element={<MyBookings />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        
+        <Route path="/admin" element={<Admin />} />
+        
         <Route path="/register" element={<Register />}
 />
-{/* 🛠️ ADMIN PANEL */}
-<Route path="/admin" element={<Admin />} />
-<Route path="/admin/movies" element={<Admin />} />
-<Route path="/admin/screens" element={<Admin />} />
-<Route path="/admin/shows" element={<Admin />} />
-<Route path="/admin/offers" element={<Admin />} />
-<Route path="/admin/users" element={<Admin />} />
+{/* 🛠️ ADMIN PANEL */}{/* 🛠️ ADMIN PANEL — હવે guarded */}
+<Route
+  path="/admin"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
+<Route
+  path="/admin/movies"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
+<Route
+  path="/admin/screens"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
+<Route
+  path="/admin/shows"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
+<Route
+  path="/admin/offers"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
+<Route
+  path="/admin/users"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
+<Route
+  path="/admin/settings"
+  element={
+    <PrivateRoute requireAdmin>
+      <Admin />
+    </PrivateRoute>
+  }
+/>
 
 <Route path="/admin/settings" element={<Admin />} />
         <Route path="/payment" element={<PaymentPage />} />

@@ -1,16 +1,73 @@
-# React + Vite
+# 🎬 Movie Ticket Booking - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application built with **React, Vite, Axios, and React Router**.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Node.js
+* npm
+* Running FastAPI backend
+* Running MySQL server
 
-## React Compiler
+## Install & Run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+cd frontend
 
-## Expanding the ESLint configuration
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+Frontend:
+
+
+http://localhost:5173
+
+
+## Backend Requirement
+
+Make sure the FastAPI backend is running:
+
+cd backend
+
+python init_db.py
+
+uvicorn main:app --reload
+
+
+Backend:
+
+
+http://127.0.0.1:8000
+
+
+Swagger:
+
+
+http://127.0.0.1:8000/docs
+
+
+## Application Flow
+
+
+Login
+ ↓
+Select Movie
+ ↓
+Select Cinema
+ ↓
+Select Show
+ ↓
+Select Seats
+ ↓
+Apply Offer
+ ↓
+Payment
+ ↓
+Booking Confirmation
+```
+
+## Testing
+
+
+npx playwright test
+

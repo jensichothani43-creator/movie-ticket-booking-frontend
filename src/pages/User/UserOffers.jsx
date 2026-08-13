@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import "../../css/user/UserOffers.css";
+import "./UserOffers.css";
 import { useParams } from "react-router-dom";
 
 export default function UserOffers() {
