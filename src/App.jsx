@@ -81,7 +81,7 @@ export default function App() {
         <Route path="/shows" element={<Shows />} />
         <Route path="/my-bookings" element={<MyBookings />} />
         
-        <Route path="/admin" element={<Admin />} />
+      
         
         <Route path="/register" element={<Register />}
 />
@@ -89,23 +89,24 @@ export default function App() {
 <Route
   path="/admin"
   element={
-    <PrivateRoute requireAdmin>
+    <PrivateRoute adminOnly={true}>
       <Admin />
     </PrivateRoute>
   }
 />
+
 <Route
   path="/admin/movies"
   element={
-    <PrivateRoute requireAdmin>
-      <Admin />
+    <PrivateRoute adminOnly={true}>
+      <Screens />
     </PrivateRoute>
   }
 />
 <Route
   path="/admin/screens"
   element={
-    <PrivateRoute requireAdmin>
+    <PrivateRoute adminOnly={true}>
       <Admin />
     </PrivateRoute>
   }
@@ -113,7 +114,7 @@ export default function App() {
 <Route
   path="/admin/shows"
   element={
-    <PrivateRoute requireAdmin>
+    <PrivateRoute adminOnly={true}>
       <Admin />
     </PrivateRoute>
   }
@@ -121,7 +122,7 @@ export default function App() {
 <Route
   path="/admin/offers"
   element={
-    <PrivateRoute requireAdmin>
+    <PrivateRoute adminOnly={true}>
       <Admin />
     </PrivateRoute>
   }
@@ -129,7 +130,7 @@ export default function App() {
 <Route
   path="/admin/users"
   element={
-    <PrivateRoute requireAdmin>
+    <PrivateRoute adminOnly={true}>
       <Admin />
     </PrivateRoute>
   }
@@ -137,13 +138,13 @@ export default function App() {
 <Route
   path="/admin/settings"
   element={
-    <PrivateRoute requireAdmin>
+    <PrivateRoute adminOnly={true}>
       <Admin />
     </PrivateRoute>
   }
 />
 
-<Route path="/admin/settings" element={<Admin />} />
+
         <Route path="/payment" element={<PaymentPage />} />
   
 <Route
