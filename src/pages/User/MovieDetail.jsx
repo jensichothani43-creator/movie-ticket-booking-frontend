@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import "../../css/user/movies.css";
+import "../../css/movieDetail.css";
 
 export default function MovieDetail() {
 

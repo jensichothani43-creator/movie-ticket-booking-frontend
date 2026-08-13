@@ -1,13 +1,12 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const logout = () => {
-
     // JWT token delete
     localStorage.removeItem("token");
 
@@ -15,63 +14,37 @@ export default function Header() {
     navigate("/login");
   };
 
-
   return (
-    <header className="top-header">
+    <header className="header">
 
-      <h2 className="logo">
-        🎬 MovieHub
-      </h2>
-
-
-      <div className="profile">
-
-        <button
-          className="profile-btn"
-          onClick={() => setOpen(!open)}
-        >
-          👤 Account ▾
-        </button>
-
+      <div className="logo" onClick={() => navigate("/home")}>
 
         {open && (
           <div className="profile-menu">
 
+            {/* Profile */}
+            <div
+              className="menu-item"
+              onClick={() => {
+                setOpen(false);
+                navigate("/profile");
+              }}
+            >
+              👤 Profile
+            </div>
 
+            {/* Sign Out */}
+            <div
+              className="menu-item logout"
+              onClick={logout}
+            >
+              🚪 Sign Out
+            </div>
 
-            {open && (
-  <div className="profile-menu">
-
-    <div
-      className="menu-item"
-      onClick={() => navigate("/profile")}
-    >
-      👤 My Profile
-    </div>
-
-
-    <div
-      className="menu-item"
-      onClick={() => navigate("/my-bookings")}
-    >
-      🎟 My Bookings
-    </div>
-
-
-    <div
-      className="menu-item logout"
-      onClick={logout}
-    >
-      🚪 Sign Out
-    </div>
-
-  </div>
-)}
           </div>
         )}
-
       </div>
-
     </header>
   );
 }
+

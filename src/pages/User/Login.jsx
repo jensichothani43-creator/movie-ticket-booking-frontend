@@ -71,10 +71,15 @@ console.log("USER ID:", response.data.user_id);
       console.log("Response:", error.response);
       console.log("Message:", error.message);
 
-      setMsg(
-        error.response?.data?.detail || "Login Failed"
-      );
+     const detail = error.response?.data?.detail;
 
+setMsg(
+  Array.isArray(detail)
+    ? detail.map((item) => item.msg).join(", ")
+    : typeof detail === "string"
+      ? detail
+      : "Login Failed"
+);
     } finally {
       setLoading(false);
     }
@@ -91,9 +96,7 @@ console.log("USER ID:", response.data.user_id);
 
       <div style={styles.card}>
 
-        <h1 style={styles.logo}>
-          🎬 MovieHub Login
-        </h1>
+       
 
 
         <p style={styles.subtitle}>

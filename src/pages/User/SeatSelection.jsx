@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import api from "../../services/api";
-import Header from "../../components/Header";
 
+import Header from "../../components/Header";
 
 export default function SeatSelection() {
 
   const { id: movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-    // ✅ AHIYA MUKO
+   
   const formatTime = (time) => {
 
     if (!time) return "-";

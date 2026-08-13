@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../services/api";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function PaymentResult() {
@@ -7,6 +8,9 @@ export default function PaymentResult() {
   const navigate = useNavigate();
 
   const isSuccess = location.pathname === "/payment-success";
+
+const queryParams = new URLSearchParams(location.search);
+const bookingId = queryParams.get("bookingId") || queryParams.get("booking_id");
 
 
   return (
@@ -96,9 +100,17 @@ export default function PaymentResult() {
             </p>
 
 
-            <button
-              onClick={() => navigate("/final-ticket")}
-              style={{
+           <button
+  onClick={() => {
+    if (bookingId) {
+      localStorage.setItem(
+        "ticketData",
+        JSON.stringify({ bookingId: bookingId })
+      );
+    }
+    navigate("/final-ticket");
+  }}
+  style={{
                 width:"100%",
                 padding:"14px",
                 border:"none",

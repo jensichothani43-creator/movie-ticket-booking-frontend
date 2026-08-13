@@ -27,11 +27,7 @@ export default function Movies() {
         console.log("MOVIES API:", res.data);
 
 
-        const moviesData =
-          res.data?.movies ||
-          res.data?.data ||
-          res.data ||
-          [];
+       setMovies(res.data);
 
 
         setMovies(

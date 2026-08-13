@@ -21,7 +21,7 @@ export default function MyBookings() {
     setError("");
 
     const res = await api.get(
-  "/bookings",
+  "/my-bookings",
   {
     headers:{
       Authorization:
@@ -29,6 +29,8 @@ export default function MyBookings() {
     }
   }
 );
+
+console.log("MY BOOKINGS:", res.data);
 
     setBookings(res.data?.data || res.data || []);
 
@@ -133,9 +135,15 @@ const handleCancel = async (id) => {
 
         <div style={styles.list}>
 
-          {bookings.map((b) => {
-            const isCancelled =
-              (b.status || "").toLowerCase() === "cancelled";
+        
+{bookings.map((b) => {
+  const status = (b.status || "pending").toLowerCase();
+
+  const isCancelled = status === "cancelled";
+  const isPending = status === "pending";
+  const isConfirmed = status === "confirmed";
+
+
 
             return (
               <div key={b.id} style={styles.ticket}>
@@ -163,17 +171,35 @@ const handleCancel = async (id) => {
                 <div style={styles.details}>
 
                   <div style={styles.detailsTop}>
-                    <span
-                      style={{
-                        ...styles.badge,
-                        background: isCancelled ? "#3a1f24" : "#12321f",
-                        color: isCancelled ? "#f87171" : "#4ade80",
-                        borderColor: isCancelled ? "#5c2530" : "#1f4d31",
-                      }}
-                    >
-                      {isCancelled ? "● Cancelled" : "● Confirmed"}
-                    </span>
-                    <span style={styles.bookingId}>#{b.id}</span>
+                   
+                   <span
+  style={{
+    ...styles.badge,
+    background: isCancelled
+      ? "#3a1f24"
+      : isPending
+      ? "#332b16"
+      : "#12321f",
+
+    color: isCancelled
+      ? "#f87171"
+      : isPending
+      ? "#facc15"
+      : "#4ade80",
+
+    borderColor: isCancelled
+      ? "#5c2530"
+      : isPending
+      ? "#66551d"
+      : "#1f4d31",
+  }}
+>
+  {isCancelled
+    ? "● Cancelled"
+    : isPending
+    ? "● Pending"
+    : "● Confirmed"}
+</span>
                   </div>
 
                   <h2 style={styles.movieName}>

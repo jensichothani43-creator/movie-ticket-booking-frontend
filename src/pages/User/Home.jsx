@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import "../../css/home.css";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
 import Header from "../../components/Header";
+import ErrorState from "../../components/ErrorState";
 
 export default function Home() {
+
 
   const [movies, setMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -14,10 +16,13 @@ export default function Home() {
   const [category, setCategory] = useState("All");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [likedMovies, setLikedMovies] = useState([]);
   const navigate = useNavigate();
   const [code, setCode] = useState("");
   const [discount, setDiscount] = useState(0);
+
+
 
   const limit = 100;
 
@@ -30,44 +35,38 @@ export default function Home() {
 
 
 
-  // fetch movies
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        setLoading(true);
+// fetch movies
+const fetchMovies = async () => {
+  try {
+    setLoading(true);
+    setError("");
 
-        const res = await api.get("/movies", {
-  params: {
-    category: category === "All" ? undefined : category,
-    page,
-    limit
+    const res = await api.get("/movies");
+
+    const movieData = Array.isArray(res.data)
+      ? res.data
+      : res.data.movies || [];
+
+    setMovies(movieData);
+
+  } catch (err) {
+    console.error("Movies error:", err);
+
+    setError(
+      err.response?.data?.detail ||
+      "Unable to load movies. Please try again."
+    );
+
+  } finally {
+    setLoading(false);
   }
-});
+};
+
+useEffect(() => {
+  fetchMovies();
+}, [page, category]);
 
 
-        console.log("API DATA:", res.data);
-
-        // ✅ FIXED RESPONSE HANDLING
-const moviesData =
-  res.data?.movies ||
-  res.data?.data ||
-  res.data ||
-  [];
-
-console.log("MOVIES ARRAY:", moviesData);
-
-        setMovies(Array.isArray(moviesData) ? moviesData : []);
-
-      } catch (err) {
-        console.log("❌ API Error:", err);
-        setMovies([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
-  }, [page, category]);
   // 🔥 Fetch Trending Movies
 useEffect(() => {
 
@@ -172,10 +171,13 @@ const bannerMovie = filteredMovies[0];
 };
 
   return (
-    <div className="app" style={styles.app}>
-       
-<header className="hero-header" style={styles.heroHeader}>
+  <div className="app" style={styles.app}>
 
+    <Header />
+
+    <header className="hero-header" style={styles.heroHeader}>
+
+   
   <h1 className="logo" style={styles.logo}>
     🎬 MovieHub
   </h1>
@@ -353,11 +355,21 @@ trendingMovies.map((movie)=>(
 ))
 }
 </div>
-     
-      {loading ? (
-        <div className="loading" style={styles.loading}>Loading movies... 🎥</div>
-      ) : (
-        <div className="grid" style={styles.grid}>
+    
+{loading ? (
+  <div className="loading" style={styles.loading}>
+    Loading movies... 🎥
+  </div>
+) : error ? (
+  <ErrorState
+    message={error}
+    onRetry={fetchMovies}
+  />
+) : (
+  <div className="grid" style={styles.grid}>
+
+
+
 {filteredMovies.length > 0 ? (
   filteredMovies.map((movie)=>(
               <div
@@ -419,15 +431,10 @@ trendingMovies.map((movie)=>(
       )}
 
       <div className="pagination" style={styles.pagination}>
-        <button onClick={() => setPage((p) => Math.max(p - 1, 1))} style={styles.pageBtn}>
-          ← Prev
-        </button>
+      
 
-        <span style={styles.pageLabel}>Page {page}</span>
+      
 
-        <button onClick={() => setPage((p) => p + 1)} style={styles.pageBtn}>
-          Next →
-        </button>
         
       </div>
 

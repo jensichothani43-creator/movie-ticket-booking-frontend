@@ -1,0 +1,259 @@
+/* ===========================
+   PAYMENT PAGE
+=========================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.payment-page{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:30px;
+  padding:30px;
+  background:#f5f7fb;
+  min-height:100vh;
+}
+
+.payment-left{
+  display:flex;
+  flex-direction:column;
+}
+
+.payment-right{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.payment-summary,
+.coupon-box,
+.payment-methods,
+.checkout-form{
+  background:#fff;
+  border-radius:15px;
+  padding:22px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.summary-title,
+.payment-title{
+  margin-bottom:20px;
+  color:#222;
+}
+
+/* ===========================
+   SUMMARY
+=========================== */
+
+.summary-card{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.summary-row,
+.payment-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.summary-row span{
+  color:#666;
+}
+
+.summary-total{
+  display:flex;
+  justify-content:space-between;
+  font-size:22px;
+  font-weight:bold;
+  color:#e50914;
+  margin-top:10px;
+}
+
+.discount{
+  color:green;
+  font-weight:bold;
+}
+
+/* ===========================
+   COUPON
+=========================== */
+
+.coupon-input-group{
+  display:flex;
+  gap:10px;
+  margin:15px 0;
+}
+
+.coupon-input-group input{
+  flex:1;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  outline:none;
+}
+
+.coupon-input-group button{
+  padding:12px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#e50914;
+  color:white;
+  font-weight:600;
+}
+
+.remove-btn{
+  background:#555 !important;
+}
+
+.coupon-success{
+  color:green;
+  margin-top:10px;
+}
+
+.coupon-error{
+  color:red;
+  margin-top:10px;
+}
+
+.available-coupons{
+  margin-top:20px;
+}
+
+.available-coupons ul{
+  margin-top:10px;
+  padding-left:18px;
+}
+
+.available-coupons li{
+  margin-bottom:8px;
+}
+
+/* ===========================
+   PAYMENT METHOD
+=========================== */
+
+.method-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.method-card{
+  border:2px solid #ddd;
+  border-radius:10px;
+  padding:15px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.method-card input{
+  margin-right:10px;
+}
+
+.method-card:hover{
+  border-color:#e50914;
+}
+
+.method-card.active{
+  border-color:#e50914;
+  background:#fff4f4;
+}
+
+.method-content h4{
+  margin-bottom:5px;
+}
+
+.method-content p{
+  color:#666;
+  font-size:14px;
+}
+
+.payment-info{
+  margin-top:25px;
+}
+
+.info-box{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.payment-input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  outline:none;
+}
+
+.payment-row{
+  display:flex;
+  gap:10px;
+}
+
+/* ===========================
+   CHECKOUT
+=========================== */
+
+.payment-summary-box{
+  margin:20px 0;
+}
+
+.pay-btn{
+  width:100%;
+  background:#e50914;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:15px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.pay-btn:hover{
+  background:#c50811;
+}
+
+.pay-btn:disabled{
+  background:#999;
+  cursor:not-allowed;
+}
+
+.secure-text{
+  text-align:center;
+  margin-top:15px;
+  color:#777;
+  font-size:14px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+.payment-page{
+grid-template-columns:1fr;
+}
+
+.method-list{
+grid-template-columns:1fr;
+}
+
+.payment-row{
+flex-direction:column;
+}
+
+}
