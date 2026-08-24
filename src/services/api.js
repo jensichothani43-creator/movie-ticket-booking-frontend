@@ -1,8 +1,9 @@
 import axios from "axios";
+
 const api = axios.create({
-  baseURL: "https://movie-ticket-booking-frontend-oouw-iivps90nk-movie21.vercel.app/v1",
-  
+  baseURL: "https://your-render-url.onrender.com/v1",
 });
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
