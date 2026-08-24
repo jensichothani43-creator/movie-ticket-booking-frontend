@@ -1,20 +1,12 @@
 import axios from "axios";
-
 const api = axios.create({
-  baseURL: "http://localhost:8000/v1",
+  baseURL: "https://movie-ticket-booking-frontend-oouw-iivps90nk-movie21.vercel.app/v1",
 });
-
 api.interceptors.request.use((config) => {
-
   const token = localStorage.getItem("token");
-
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
   return config;
-
 });
-
-
 export default api;
