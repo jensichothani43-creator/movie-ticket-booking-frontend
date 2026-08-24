@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/v1",
+  baseURL: "https://https://movie-ticket-booking-frontend-tawny.vercel.app//v1",
 });
 
 api.interceptors.request.use((config) => {
