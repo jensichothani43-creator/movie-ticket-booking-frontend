@@ -23,19 +23,9 @@ export default function Movies() {
           "http://127.0.0.1:8000/movies"
         );
 
-
         console.log("MOVIES API:", res.data);
 
-
-       setMovies(res.data);
-
-
-        setMovies(
-          Array.isArray(moviesData)
-            ? moviesData
-            : []
-        );
-
+        setMovies(Array.isArray(res.data) ? res.data : []);
 
       } catch(err){
 
